@@ -85,6 +85,8 @@ public class Main {
             //finchè il file ha altre linee, andrà a leggere la successiva
             while(fileScanner.hasNext()){
              String line = fileScanner.nextLine();
+             //stampo il contenuto del file
+                System.out.println(line);
             }
         }catch(FileNotFoundException e){
             throw new RuntimeException(e);
