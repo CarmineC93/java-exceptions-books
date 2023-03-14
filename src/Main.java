@@ -16,42 +16,27 @@ public class Main {
 
             System.out.println("BOOK N: " + (i+1));
 
-            String title = "";
             System.out.print("Title: ");
-            try{
-                title = scan.nextLine();
-            }catch(InputMismatchException e){
-                System.out.println("Input non valido: deve essere una stringa");
-            }
+            String title = scan.nextLine();
 
-            int pages = 0;
             System.out.print("Pages: ");
-            try{pages = Integer.parseInt(scan.nextLine());
-            }catch (InputMismatchException e){
-                System.out.println("Input non valido: deve essere un numero intero");
-            }
+            int pages = Integer.parseInt(scan.nextLine());
 
-            String author = "";
             System.out.print("Author: ");
-            try {
-                author = scan.nextLine();
-            }catch(InputMismatchException e){
-                System.out.println("Input non valido: deve essere una stringa");
-            }
+            String author = scan.nextLine();
 
-            String editor = "";
             System.out.print("Editor: ");
-            try{
-                 editor = scan.nextLine();
-            }catch(InputMismatchException e){
-                System.out.println("Input non valido: deve essere una stringa");
-            }
+            String editor = editor = scan.nextLine();
 
-            books[i] = new Book(title, pages, author, editor);
+                try {
+                    books[i] = new Book(title, pages, author, editor);
+                }catch(IllegalArgumentException e){
+                    System.out.println(e.getMessage());
+                }
 
         }
 
         System.out.println(Arrays.toString(books));
-
+        scan.close();
     }
 }

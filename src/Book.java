@@ -21,27 +21,22 @@ public class Book {
 
     //CONSTRUCTORS
 
-    public Book (String title, int pages, String author, String editor) throws IllegalArgumentException, NullPointerException{
-        if(pages <= 0){
-            throw new IllegalArgumentException("number of pages needs to be > 0");
-        }
-        checkString(title);
-        checkString(author);
-        checkString(editor);
+    public Book (String title, int pages, String author, String editor) throws IllegalArgumentException{
+        setTitle(title);
+        setPages(pages);
+        setAuthor(author);
+        setEditor(editor);
     }
 
     //GETTER & SETTER
-    public void setTitle(String title) {
+    public void setTitle(String title){
         checkString(title);
         this.title = title;
     }
 
     public void setPages(int pages) {
-        if(pages <= 0){
-            throw new IllegalArgumentException("number of pages needs to be > 0");
-        }else{
-            this.pages = pages;
-        }
+        checkInt(pages);
+        this.pages = pages;
     }
 
     public void setAuthor(String author) {
@@ -82,9 +77,14 @@ public class Book {
                 '}';
     }
 
-    public void checkString(String textField){
-        if (textField == ""){
+    public void checkString(String textField) throws IllegalArgumentException{
+        if (textField.equals("")){
             throw new IllegalArgumentException("The field must not be void");
+        }
+    }
+    public void checkInt(int pagesNumber) throws IllegalArgumentException{
+        if (pagesNumber <= 0){
+            throw new IllegalArgumentException("number of pages needs to be > 0");
         }
     }
 }
