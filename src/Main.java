@@ -19,8 +19,12 @@ public class Main {
             System.out.print("Title: ");
             String title = scan.nextLine();
 
+            int pages = 0;
             System.out.print("Pages: ");
-            int pages = Integer.parseInt(scan.nextLine());
+            try{
+                pages = Integer.parseInt(scan.nextLine());
+            }catch(NumberFormatException e){
+            }
 
             System.out.print("Author: ");
             String author = scan.nextLine();
@@ -33,7 +37,6 @@ public class Main {
                 }catch(IllegalArgumentException e){
                     System.out.println(e.getMessage());
                 }
-
         }
 
         System.out.println(Arrays.toString(books));
