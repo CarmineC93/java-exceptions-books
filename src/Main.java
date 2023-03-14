@@ -24,6 +24,8 @@ public class Main {
             try{
                 pages = Integer.parseInt(scan.nextLine());
             }catch(NumberFormatException e){
+                //evitabile: il n. di pagine resterà 0 in caso di errore e stamperà il messaggio del catch che prende il costruttore
+                System.out.println("Number of pages must be >0");
             }
 
             System.out.print("Author: ");
