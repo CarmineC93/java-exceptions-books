@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -15,17 +16,36 @@ public class Main {
 
             System.out.println("BOOK N: " + (i+1));
 
+            String title = "";
             System.out.print("Title: ");
-            String title = scan.nextLine();
+            try{
+                title = scan.nextLine();
+            }catch(InputMismatchException e){
+                System.out.println("Input non valido: deve essere una stringa");
+            }
 
+            int pages = 0;
             System.out.print("Pages: ");
-            int pages = Integer.parseInt(scan.nextLine());
+            try{pages = Integer.parseInt(scan.nextLine());
+            }catch (InputMismatchException e){
+                System.out.println("Input non valido: deve essere un numero intero");
+            }
 
+            String author = "";
             System.out.print("Author: ");
-            String author = scan.nextLine();
+            try {
+                author = scan.nextLine();
+            }catch(InputMismatchException e){
+                System.out.println("Input non valido: deve essere una stringa");
+            }
 
+            String editor = "";
             System.out.print("Editor: ");
-            String editor = scan.nextLine();
+            try{
+                 editor = scan.nextLine();
+            }catch(InputMismatchException e){
+                System.out.println("Input non valido: deve essere una stringa");
+            }
 
             books[i] = new Book(title, pages, author, editor);
 
