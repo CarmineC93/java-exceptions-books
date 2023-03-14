@@ -1,8 +1,17 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
 public class Main {
+
+    //salvo variabile del filePath
+    private final static String FilePath = "./booksList.txt";
+
     public static void main(String[] args) {
 
         //creo array di libri
@@ -43,5 +52,51 @@ public class Main {
 
         System.out.println(Arrays.toString(books));
         scan.close();
+
+
+
+        //scrivo l'array di libri su file
+        FileWriter myLibrary = null;
+        try{
+            myLibrary = new FileWriter(FilePath);
+            for(Book currentBook : books){
+                myLibrary.write(currentBook.toString()+ "\n");
+            }
+
+        } catch (IOException e) {
+            System.out.println("Impossible to create file");
+            System.out.println(e.getMessage());
+        }finally {
+            if(myLibrary != null){
+                try{
+                    myLibrary.close();
+                }catch(IOException e){
+                    //poichè non è possibile gestire l'assenza di file si usa questa eccezione
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+
+        //lettura del file
+        Scanner fileScanner = null;
+        try {
+            //lettura del file tramite Scanner
+            fileScanner = new Scanner( new File(FilePath));
+            //finchè il file ha altre linee, andrà a leggere la successiva
+            while(fileScanner.hasNext()){
+             String line = fileScanner.nextLine();
+            }
+        }catch(FileNotFoundException e){
+            throw new RuntimeException(e);
+        }finally {
+            if (fileScanner != null) {
+                try {
+                    fileScanner.close();
+                } catch (IllegalStateException ise) {
+                    ise.printStackTrace();
+                }
+            }
+        }
+
     }
 }
